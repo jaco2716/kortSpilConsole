@@ -10,7 +10,7 @@ namespace kortSpilConsole
     class UnoGame
     {
         public Deck deck;
-        List<Player> players = new List<Player>();
+        public List<Player> players = new List<Player>();
         public Player currentPlayer;
         private bool gameover = false;
 
@@ -44,11 +44,11 @@ namespace kortSpilConsole
                 int i = Convert.ToInt32(Console.ReadLine());
 
                 //TODO prøv at 'spille' det valgte kort til bunken
-                if (deck.playCard(currentPlayer.Hand[i - 1]))
+
+                if (deck.playCard(currentPlayer.Hand[i - 1]) == false)
                 {
-                    //currentPlayer.Hand.Remove(currentPlayer.Hand[i - 1]);
+                    players[players.IndexOf(currentPlayer)].DrawCard();
                 }
-                else { players[players.IndexOf(currentPlayer)].DrawCard();}
 
                 nextPlayer();
             }
