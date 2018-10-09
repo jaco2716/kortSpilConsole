@@ -44,9 +44,9 @@ namespace kortSpilConsole
             sb.Append(": ");
             for (int i = 0; i < Hand.Count; i++)
             {
-                sb.Append("[");
+                sb.Append(i+1+"[");
                 sb.Append(Hand[i].ToString());
-                sb.Append("]");
+                sb.Append("]  ");
             }
 
             return sb.ToString();

@@ -32,20 +32,30 @@ namespace kortSpilConsole
 
             }
 
-            cards.Add(new Card("black", "+4"));
-            cards.Add(new Card("black", "+4"));
-            cards.Add(new Card("black", "+4"));
-            cards.Add(new Card("black", "+4"));
+            for (int i = 0; i < 4; i++)
+            {
+                cards.Add(new Card("black", "+4"));
+                cards.Add(new Card("black", "switch color"));
+            }
+            //skift tur
+            cards.Add(new Card("red", "reverse"));
+            cards.Add(new Card("blue", "reverse"));
+            cards.Add(new Card("green", "reverse"));
+            cards.Add(new Card("yellow", "reverse"));
             //skip kort
             cards.Add(new Card("red", "skip"));
             cards.Add(new Card("blue", "skip"));
             cards.Add(new Card("green", "skip"));
             cards.Add(new Card("yellow", "skip"));
             //plus to kort
-            cards.Add(new Card("red", "+2"));
-            cards.Add(new Card("blue", "+2"));
-            cards.Add(new Card("green", "+2"));
-            cards.Add(new Card("yellow", "+2"));
+            for (int i = 0; i < 2; i++)
+            {
+                cards.Add(new Card("red", "+2"));
+                cards.Add(new Card("blue", "+2"));
+                cards.Add(new Card("green", "+2"));
+                cards.Add(new Card("yellow", "+2"));
+            }
+            
 
 
             Shuffle();
@@ -91,6 +101,7 @@ namespace kortSpilConsole
                 
                 if (Peek().Value == "skip"){ game.Skip(); }
 
+                if (Peek().Value == "reverse") { game.players.Reverse(); }
                 if (Peek().Color == "black")
                 {
                     Console.WriteLine("Which color would you like");
@@ -105,8 +116,11 @@ namespace kortSpilConsole
                 
                 if (Peek().Value == "+4")
                 {
-
                     game.players[game.players.IndexOf(game.currentPlayer)+1].DrawCard(4);
+                }
+                if (Peek().Value == "+2")
+                {
+                    game.players[game.players.IndexOf(game.currentPlayer) + 1].DrawCard(2);
                 }
                 return true;
             }
