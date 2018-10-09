@@ -11,6 +11,7 @@ namespace kortSpilConsole
         private List<Card> cards = new List<Card>();
         private List<Card> cardsRevealed = new List<Card>();
         private UnoGame game;
+        private Player players;
 
         public Deck(UnoGame game)
         {
@@ -31,12 +32,18 @@ namespace kortSpilConsole
                 cards.Add(new Card("yellow", ""+i));
 
             }
+            cards.Add(new Card("black", "+4"));
+            //skip kort
+            cards.Add(new Card("red", "skip"));
+            cards.Add(new Card("blue", "skip"));
+            cards.Add(new Card("green", "skip"));
+            cards.Add(new Card("yellow", "skip"));
+            //plus to kort
+            cards.Add(new Card("red", "+2"));
+            cards.Add(new Card("blue", "+2"));
+            cards.Add(new Card("green", "+2"));
+            cards.Add(new Card("yellow", "+2"));
 
-            for (int i = 0; i < 3; i++)
-            {
-                cards.Add(new Card("red", "+2"));
-                cards.Add(new Card("black", "skip"));
-            }
 
             Shuffle();
 
@@ -74,11 +81,25 @@ namespace kortSpilConsole
 
         public bool playCard(Card card)
         {
-            if (Peek().Color == card.Color || Peek().Value == card.Value)
+            if (Peek().Color == card.Color || Peek().Value == card.Value || card.Color == "black")
             {
+                game.currentPlayer.Hand.Remove(card);
                 cardsRevealed.Add(card);
+                
+                    if (Peek().Value == "skip")
+                    {
+                        game.Skip();
+                        
+                    }
+
+                if (Peek().Value == "+2")
+                {
+                    players.DrawCard(2);
+                }
                 return true;
             }
+
+            
             else return false;
         }
 
