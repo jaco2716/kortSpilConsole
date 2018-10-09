@@ -29,6 +29,13 @@ namespace kortSpilConsole
                 //yellow cards
                 cards.Add(new Card("yellow", ""+i));
                 cards.Add(new Card("yellow", ""+i));
+
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                cards.Add(new Card("red", "+2"));
+                cards.Add(new Card("black", "skip"));
             }
 
             Shuffle();
@@ -42,6 +49,20 @@ namespace kortSpilConsole
             Card c = cards[0]; //finder øverste kort
             cards.Remove(c); //fjerner kort fra bunken (c = øverste kort)
             return c; //giver kortet til den der kalder metoden
+        }
+
+        public Card DebugDraw(string Color, String Value)
+        {
+            for (int i = 0; i < cards.Count; i++)
+            {
+                if (cards[i].Color == Color && cards[i].Value == Value)
+                {
+                    Card c = cards[i];
+                    cards.Remove(c);
+                    return c;
+                }
+            }
+            return null;
         }
 
         public void Shuffle()
@@ -60,6 +81,8 @@ namespace kortSpilConsole
             }
             else return false;
         }
+
+        
 
         public override string ToString()
         {
