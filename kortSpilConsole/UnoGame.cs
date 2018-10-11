@@ -40,7 +40,7 @@ namespace kortSpilConsole
             currentPlayer = players.First();
             //del kort ud til spiller 1
             players[0].DrawCard(7);
-            //players[0].DebugDrawCard("red", "reverse");
+            players[0].DebugDrawCard("black", "+4");
             
             //del 7 kort ud til resten af spillerne
             for (int i = 1; i < players.Count; i++)

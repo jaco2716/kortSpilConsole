@@ -110,9 +110,9 @@ namespace kortSpilConsole
                     Peek().Color = colorPick;
                 }
                 
-                else if (Peek().Value == "+4")
+                if (Peek().Value == "+4")
                 {
-                    game.players[game.players.IndexOf(game.currentPlayer)+1].DrawCard(4);
+                    game.players[game.players.IndexOf(game.currentPlayer) + 1].DrawCard(4);
                 }
                 else if (Peek().Value == "+2")
                 {
